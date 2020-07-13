@@ -1,42 +1,20 @@
-# API routes with GraphQL server
+# Plant It Now
 
-Next.js ships with [API routes](https://github.com/vercel/next.js#api-routes), which provide an easy solution to build your own `API`. This example shows their usage alongside [apollo-server-micro](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-micro) to provide simple GraphQL server consumed by Next.js app.
+Uses GEOip lookup and the Climate zone API along with data from ABC gardens to determine what is best for you to plant in your garden right now :)
 
-## Deploy your own
+### GEOip lookup
 
-Deploy the example using [Vercel](https://vercel.com):
+Using free: http://ip-api.com/json
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/next.js/tree/canary/examples/api-routes-graphql)
+### Climate API
 
-## How to use
+http://climateapi.scottpinkelman.com/
+Takes a lat and long and returns a `koppen_geiger_zone`
+http://climateapi.scottpinkelman.com/api/v1/location/40.8539645/14.1765625
 
-### Using `create-next-app`
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+### Graphql API
 
-```bash
-npx create-next-app --example api-routes-graphql api-routes-graphql-app
-# or
-yarn create next-app --example api-routes-graphql api-routes-graphql-app
-```
+plants -> all the plants
+climates -> all plants that can be planted in a climate zone listed by month
 
-### Download manually
-
-Download the example:
-
-```bash
-curl https://codeload.github.com/vercel/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/api-routes-graphql
-cd api-routes-graphql
-```
-
-Install it and run:
-
-```bash
-npm install
-npm run dev
-# or
-yarn
-yarn dev
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/import?filter=next.js&utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
