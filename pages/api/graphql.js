@@ -1,9 +1,12 @@
 import { ApolloServer, gql } from "apollo-server-micro";
 
+var PlantData = require("../../plants.json");
+
 const typeDefs = gql`
   type Query {
     plants: [Plant!]!
     climates: [Climate!]!
+    plant: Plant
   }
   type Plant {
     name: String!
@@ -21,7 +24,10 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     plants(parent, args, context) {
-      return [{ name: "Mr. Plant" }];
+      return PlantData;
+    },
+    plant(parent, args, context) {
+      return PlantData["Cabbage"];
     },
     climates(parent, args, context) {
       return [
