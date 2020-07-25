@@ -1,13 +1,14 @@
 import { ApolloServer, gql } from "apollo-server-micro";
 
-var PlantData = require("../../plants.json");
+const PlantData = require("../../plants.json");
+// const ClimateData = require("../../climates.json");
 
 const typeDefs = gql`
   type Query {
-    plants: [Plant!]!
-    climates: [Climate!]!
-    plant: Plant
+    climate(name: String!, month: Int!): Climate!
+    plant(name: String!): Plant
   }
+
   type Plant {
     name: String!
     botanicalName: String
@@ -15,35 +16,36 @@ const typeDefs = gql`
     harvest: String
     plantUrl: String
   }
+
   type Climate {
     name: String!
-    months: [[Plant!]!]!
+    plants: [Plant!]!
   }
 `;
 
 const resolvers = {
   Query: {
-    plants(parent, args, context) {
-      return PlantData;
-    },
     plant(parent, args, context) {
-      return PlantData["Cabbage"];
+      return PlantData[args.name];
     },
-    climates(parent, args, context) {
-      return [
-        {
-          name: "blah",
-          months: [
-            [
-              { name: "Mr. Plant" },
-              { name: "Mr. Plant" },
-              { name: "Mr. Plant" },
-            ],
-            [{ name: "Mr. Plant" }],
-            [{ name: "Mr. Plant" }],
-          ],
-        },
-      ];
+    climate(parent, args, context) {
+      const climateZoneMap = {
+        A: "TROPICAL ZONE",
+        B: "ARID ZONE",
+        C: "TEMPERATE ZONE",
+        D: "COOL ZONE",
+        E: "POLAR ZONE", //CURRENTLY NO DATA ON POLAR ZONE :(
+      };
+      return {
+        name: climateZoneMap[args.name[0]], //todo cast to a displayable name
+        plants: [
+          { name: "Mr. Plant" },
+          { name: "Mr. Plant" },
+          { name: "Mr. Plant" },
+          { name: "Mr. Plant" },
+          { name: "Mr. Plant" },
+        ],
+      };
     },
   },
 };
