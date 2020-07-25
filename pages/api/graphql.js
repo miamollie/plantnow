@@ -29,8 +29,15 @@ const resolvers = {
       return PlantData[args.name];
     },
     climate(parent, args, context) {
+      const climateZoneMap = {
+        A: "TROPICAL ZONE",
+        B: "ARID ZONE",
+        C: "TEMPERATE ZONE",
+        D: "COOL ZONE",
+        E: "POLAR ZONE", //CURRENTLY NO DATA ON POLAR ZONE :(
+      };
       return {
-        name: args.name, //todo cast to real name
+        name: climateZoneMap[args.name[0]], //todo cast to a displayable name
         plants: [
           { name: "Mr. Plant" },
           { name: "Mr. Plant" },
