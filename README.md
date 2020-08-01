@@ -19,14 +19,13 @@ climate -> all plants that can be planted in a climate zone by month
 
 ## todo
 
-store climate zone as cookie or in localstorage so no need to requery
-data
+- store climate zone as cookie or in localstorage so no need to requery
 
-- scrape zones again; try to find something for Polar zone...
-- map abc zones to koppen geiger zones
+
+
   ui
 - material ui/ flip animation modals
-- proper error handling
+- proper error handling; needs lots of attention
 - move some API to context of apollo server
 - dataloader(if required..)
   - move other api calls to apollo server and add in context

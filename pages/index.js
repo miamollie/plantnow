@@ -10,7 +10,7 @@ const fetchPlantData = async ({ zone, month }) => {
       name: "${zone}"
       month: ${month}
     )
-       { name, plants { name } }
+       { name, plants { name, imgUrl } }
   }`;
 
   const res = await fetch(GQL_API, {
@@ -56,7 +56,7 @@ export default function Index() {
   const { data, error, isValidating } = useSWR(
     GEO_API + CLIMATE_API + GQL_API,
     fetcher
-  ); //todo what key...?
+  );
 
   if (error) {
     console.log(error);
@@ -65,17 +65,22 @@ export default function Index() {
   if (isValidating || !data) {
     return "Finding your plants..."; //TODO SHOULD BE BEAUTIFUL SVG PLANT ILLUSTRATION
   }
-  console.log(data.climate);
 
   const { name, plants } = data.climate;
+
   return (
     <div>
       <h1>{`We've detected you're in: ${name}`}</h1>
       <section>
         <div>
           {plants
-            ? plants.map((p, i) => <div key={i}>{p.name}</div>)
-            : "no plants now"}
+            ? plants.map((p, i) => (
+                <div key={i}>
+                  {p.name}
+                  <img src={p.imgUrl} role="presentational" alt="" />
+                </div>
+              ))
+            : "no plants..."}
         </div>
       </section>
     </div>
