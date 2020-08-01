@@ -18,16 +18,18 @@ plant -> get a plant's data by name
 climate -> all plants that can be planted in a climate zone by month
 
 ## todo
+
 store climate zone as cookie or in localstorage so no need to requery
-  data
-- scrape zones again
+data
+
+- scrape zones again; try to find something for Polar zone...
 - map abc zones to koppen geiger zones
   ui
 - material ui/ flip animation modals
 - proper error handling
 - move some API to context of apollo server
 - dataloader(if required..)
-  deploy to netlify
   - move other api calls to apollo server and add in context
-
+- https://ip-api.com/docs/ -> get geoip api key
+- upgrade insecure for KGz <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 

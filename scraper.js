@@ -13,9 +13,8 @@ const zoneUrls = [
 
 const getData = function () {
   const climateData = {};
-  const plantData = {};
+  // const plantData = {};
   zoneUrls.forEach(async function (url) {
-    // Get the post data
     let response = await axios(url).catch((e) => console.log(e));
     let html = response.data;
     let $ = cheerio.load(html);
@@ -36,64 +35,67 @@ const getData = function () {
         let html = plantsResp.data;
         let $ = cheerio.load(html);
         let plants = $("#comp-rich-text5 p");
-        if (!(monthTag in climateData[climateZone])) {
-          climateData[climateZone][monthTag] = [];
-        }
 
+        let climatePlants = [];
         plants.each(async function () {
           let node = $(this).find("a");
-          let plantUrl = node.attr("href");
-          if (plantUrl && plantUrl.indexOf("coremedia") === -1) {
-            let plantDataResp = await axios(
-              `${baseUrl}${plantUrl}`
-            ).catch((e) => console.log(e));
-            if (plantDataResp) {
-              let html = plantDataResp.data;
-              let $ = cheerio.load(html);
-              let name = $("[name*='commonname'] + p").text();
-              let botanicalName = $("[name*='botanicalname'] + p").text();
-              let hint = $("[name*='harvest'] + p").text();
-              let harvest = $("[name*='hints'] + p").text();
-              let imgUrl = $("figure img").attr("src");
-
-              climateData[climateZone][monthTag].push(name);
-
-              plant = {
-                name,
-                botanicalName,
-                hint,
-                harvest,
-                plantUrl,
-                imgUrl,
-              };
-              if (!plantData[name]) {
-                plantData[name] = plant;
-                fs.writeFile(
-                  "plants.json",
-                  JSON.stringify(plantData),
-                  function (err) {
-                    if (err) {
-                      return console.log(err);
-                    }
-                  }
-                );
-
-                fs.writeFile(
-                  "data.json",
-                  JSON.stringify(climateData),
-                  function (err) {
-                    if (err) {
-                      return console.log(err);
-                    }
-                  }
-                );
-              }
-            }
+          let name = node.text();
+          if (name.length) {
+            climatePlants.push(name);
           }
         });
+        if (!(monthTag in climateData[climateZone])) {
+          climateData[climateZone][monthTag] = climatePlants;
+        }
       }
+      console.log(climateData);
     });
   });
+  // fs.writeFile("data.json", JSON.stringify(climateData), function (err) {
+  //   if (err) {
+  //     return console.log(err);
+  //   }
+  // });
 };
 
 getData();
+
+// fetch plant data
+// let node = $(this).find("a");
+// let plantUrl = node.attr("href");
+// if (plantUrl && plantUrl.indexOf("coremedia") === -1) {
+// let plantDataResp = await axios(
+//   `${baseUrl}${plantUrl}`
+// ).catch((e) => console.log(e));
+// if (plantDataResp) {
+//   let html = plantDataResp.data;
+//   let $ = cheerio.load(html);
+//   let name = $("[name*='commonname'] + p").text();
+//   let botanicalName = $("[name*='botanicalname'] + p").text();
+//   let hint = $("[name*='harvest'] + p").text();
+//   let harvest = $("[name*='hints'] + p").text();
+//   let imgUrl = $("figure img").attr("src");
+
+//   climateData[climateZone][monthTag].push(name);
+
+//   plant = {
+//     name,
+//     botanicalName,
+//     hint,
+//     harvest,
+//     plantUrl,
+//     imgUrl,
+//   };
+// if (!plantData[name]) {
+//   plantData[name] = plant;
+//   fs.writeFile(
+//     "plants.json",
+//     JSON.stringify(plantData),
+//     function (err) {
+//       if (err) {
+//         return console.log(err);
+//       }
+//     }
+//   );
+//   }
+// }
