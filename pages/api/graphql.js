@@ -1,83 +1,58 @@
 import { ApolloServer, gql } from "apollo-server-micro";
+const ClimateZoneAPI = require("./ClimateZoneAPI");
+const GeoIpAPI = require("./GeoIpAPI");
+const ClimatePlantsAPI = require("./ClimatePlantsAPI");
+const PlantAPI = require("./PlantAPI");
 
-const PlantData = require("../../plants.json");
-const ClimateData = require("../../data.json");
-const climateZoneMap = {
-  A: "TROPICAL ZONE",
-  B: "ARID ZONE",
-  C: "TEMPERATE ZONE",
-  D: "COOL ZONE",
-  E: "POLAR ZONE", //CURRENTLY NO DATA ON POLAR ZONE :(
-};
-const monthMap = {
-  0: "January",
-  1: "February",
-  2: "March",
-  3: "April",
-  4: "May",
-  5: "June",
-  6: "July",
-  7: "August",
-  8: "September",
-  9: "October",
-  10: "November",
-  11: "December",
-};
 const typeDefs = gql`
   type Query {
-    climate(name: String!, month: Int!): Climate!
+    climate: Climate!
     plant(name: String!): Plant
   }
 
   type Plant {
     name: String!
-    botanicalName: String
-    hint: String
-    harvest: String
-    plantUrl: String
+    botanicalName: String!
+    hint: String!
+    harvest: String!
+    plantUrl: String!
     imgUrl: String
   }
 
   type Climate {
-    name: String!
+    name: String
     plants: [Plant!]
   }
 `;
 
 const resolvers = {
   Query: {
-    plant(parent, args, context) {
-      return PlantData[args.name] || null;
+    plant(_parent, args, _context) {
+      return context.plantAPI.getPlant({ name: args.name });
     },
-    climate(parent, args, context) {
-      const climateName = climateZoneMap[args.name[0]];
-      if (!climateName) return;
-
-      const monthString = monthMap[args.month];
-      if (!monthString) return;
-
-      const climateYear = ClimateData[climateName];
-      if (!climateYear) return;
-
-      const currentPlants = climateYear[monthString];
-      if (!currentPlants) return;
-
-      const plants = currentPlants.map((p) => {
-        if (!!PlantData[p] && !!PlantData[p].name) {
-          return { name: PlantData[p].name, imgUrl: PlantData[p].imgUrl };
-        } else {
-          throw new Error(`Can't find data for ${p}`);
-        }
-      });
-      return {
-        name: climateName,
-        plants,
-      };
+    climate: async (_parent, _args, context) => {
+      const {
+        dataSources: { geoIpAPI, climateZoneAPI, climatePlantsAPI },
+      } = context;
+      const [lat, long] = await geoIpAPI.getGeoIP();
+      const name = await climateZoneAPI.getClimate({ lat, long });
+      return climatePlantsAPI.getClimatePlants({ name });
     },
   },
 };
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  dataSources: () => {
+    return {
+      climateZoneAPI: new ClimateZoneAPI(),
+      geoIpAPI: new GeoIpAPI(),
+      climatePlantsAPI: new ClimatePlantsAPI(),
+      plantAPI: new PlantAPI(),
+    };
+  },
+});
 
 export const config = {
   api: {
