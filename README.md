@@ -20,15 +20,6 @@ climate -> all plants that can be planted in a climate zone by month
 ## todo
 
 - store climate zone as cookie or in localstorage so no need to requery
-
-
-
-  ui
 - material ui/ flip animation modals
 - proper error handling; needs lots of attention
-- move some API to context of apollo server
-- dataloader(if required..)
-  - move other api calls to apollo server and add in context
-- https://ip-api.com/docs/ -> get geoip api key
-- upgrade insecure for KGz <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
-
+- use netlify __redirects file to upgrade http to https

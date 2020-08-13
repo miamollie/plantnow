@@ -8,6 +8,7 @@
     "export": "next export"
   },
   "dependencies": {
+    "apollo-datasource-rest": "^0.9.3",
     "apollo-server-micro": "2.11.0",
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
