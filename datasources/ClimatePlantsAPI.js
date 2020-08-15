@@ -1,5 +1,5 @@
-const ClimateData = require("../../data.json");
-const PlantData = require("../../plants.json");
+const ClimateData = require("../data.json");
+const PlantData = require("../plants.json");
 
 class ClimatePlantsAPI {
   constructor() {

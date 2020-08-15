@@ -19,7 +19,11 @@ climate -> all plants that can be planted in a climate zone by month
 
 ## todo
 
-- store climate zone as cookie or in localstorage so no need to requery
-- material ui/ flip animation modals
-- proper error handling; needs lots of attention
+- material ui/ flip animation modals: https://material-ui.com/components/transitions/, https://material-ui.com/components/dialogs/
+- proper error handling; needs lots of attention; this.didEncounterError(error)
 - use netlify __redirects file to upgrade http to https
+- add urls as env variables, diff in dev and prod, next will extract during build
+- change build command type, cant be export https://nextjs.org/docs/advanced-features/static-html-export
+
+https://docs.netlify.com/routing/redirects/rewrites-proxies/#proxy-to-another-service
+https://community.netlify.com/t/support-guide-making-redirects-work-for-you-troubleshooting-and-debugging/13433
