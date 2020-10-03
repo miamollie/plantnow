@@ -21,7 +21,6 @@ climate -> all plants that can be planted in a climate zone by month
 
 - material ui/ flip animation modals: https://material-ui.com/components/transitions/, https://material-ui.com/components/dialogs/
 - proper error handling; needs lots of attention; this.didEncounterError(error)
-- change build command type, cant be export https://nextjs.org/docs/advanced-features/static-html-export
+- replace prod redirects with out-functions url from npm package https://github.com/netlify/next-on-netlify/issues/24
 
 https://docs.netlify.com/routing/redirects/rewrites-proxies/#proxy-to-another-service
-

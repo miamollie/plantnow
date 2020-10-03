@@ -34,7 +34,7 @@ class ClimatePlantsAPI {
       if (!!this.plants[p]) {
         return this.plants[p];
       } else {
-        throw new Error(`Can't find data for ${p}`); //change this to be more fault tolerant
+        console.error(`Can't find data for ${p}`);
       }
     });
   }
