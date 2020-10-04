@@ -24,15 +24,14 @@ class ClimatePlantsAPI {
       10: "November",
       11: "December",
     };
-    this.plants = PlantData;
+    this.plantData = PlantData;
     this.climates = ClimateData;
   }
 
-  formatPlants(plants) {
-    //this belongs on plantapi?
+  getPlantData(plants) {
     return plants.map((p) => {
-      if (!!this.plants[p]) {
-        return this.plants[p];
+      if (!!this.plantData[p]) {
+        return this.plantData[p];
       } else {
         console.error(`Can't find data for ${p}`);
       }
@@ -59,7 +58,7 @@ class ClimatePlantsAPI {
     const currentPlants = climateYear[monthString];
     if (!currentPlants) return climatePlants;
 
-    const plants = this.formatPlants(currentPlants);
+    const plants = this.getPlantData(currentPlants);
     return { ...climatePlants, plants };
   }
 }
