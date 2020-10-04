@@ -1,0 +1,3 @@
+/api/geoip/ http://ip-api.com/json 200
+/api/climate/* http://climateapi.scottpinkelman.com/api/v1/location/:splat 200
+

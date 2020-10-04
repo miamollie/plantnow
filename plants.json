@@ -86,7 +86,7 @@
     "plantUrl": "/gardening/plant-finder/turnips-swedes/9672244",
     "imgUrl": "https://www.abc.net.au/cm/rimage/9627148-16x9-thumbnail.jpg?v=3"
   },
-  "Rockmelon or Cantaloupe": {
+  "Rockmelon": {
     "name": "Rockmelon or Cantaloupe",
     "botanicalName": "Cucumis melo cantaloupensis",
     "hint": "In about 12 -14 weeks, the nearest tendril to the fruit will dry and turn hard then the stalk breaks easily away from the fruit.",
@@ -110,7 +110,7 @@
     "plantUrl": "/gardening/plant-finder/sweet-potato/9672156",
     "imgUrl": "https://www.abc.net.au/cm/rimage/9627108-16x9-thumbnail.jpg?v=3"
   },
-  "Carrot": {
+  "Carrots": {
     "name": "Carrot",
     "botanicalName": "Daucus carota var. sativus",
     "hint": "10 weeks, but before they flower",
@@ -126,8 +126,8 @@
     "plantUrl": "/gardening/plant-finder/artichoke-jerusalem/9627414",
     "imgUrl": "https://www.abc.net.au/cm/rimage/9613348-16x9-thumbnail.jpg?v=3"
   },
-  "Malabar Greens / Ceylon Spinach": {
-    "name": "Malabar Greens / Ceylon Spinach",
+  "Malabar Greens": {
+    "name": "Malabar Greens",
     "botanicalName": "Basella alba",
     "hint": "Start to pick leaves once plant reaches 50 cm",
     "harvest": "Grow directly from seed on a climbing frame.",
@@ -142,8 +142,8 @@
     "plantUrl": "/gardening/plant-finder/broadbeans/9628234",
     "imgUrl": "https://www.abc.net.au/cm/rimage/9619146-16x9-thumbnail.jpg?v=3"
   },
-  "Collards / Kale": {
-    "name": "Collards / Kale",
+  "Kale / Collards": {
+    "name": "Kale / Collards",
     "botanicalName": "Brassica oleracea Acephala Group",
     "hint": "50-60 days to maturity, pick leaves as required.",
     "harvest": "Sow seed in trays, then plant out in rows.",
@@ -158,7 +158,7 @@
     "plantUrl": "/gardening/plant-finder/lettuce/9637202",
     "imgUrl": "https://www.abc.net.au/cm/rimage/9621898-16x9-thumbnail.jpg?v=3"
   },
-  "Silverbeet or Swiss Chard": {
+  "Silverbeet": {
     "name": "Silverbeet or Swiss Chard",
     "botanicalName": "Beta vulgaris cicla",
     "hint": "From 3-4 weeks harvest outer leaves as required.",
@@ -166,7 +166,7 @@
     "plantUrl": "/gardening/plant-finder/silverbeet/9672070",
     "imgUrl": "https://www.abc.net.au/cm/rimage/9627044-16x9-thumbnail.jpg?v=3"
   },
-  "Eggplant (Aubergine)": {
+  "Eggplant": {
     "name": "Eggplant (Aubergine)",
     "botanicalName": "Solanum melongena",
     "hint": "In about three months, pick before the skin dulls and fruit is still growing in size",
@@ -302,7 +302,7 @@
     "plantUrl": "/gardening/plant-finder/capsicum/9633288",
     "imgUrl": "https://www.abc.net.au/cm/rimage/9619196-16x9-thumbnail.jpg?v=3"
   },
-  "Mangle Wurzel": {
+  "Mangle-wurzel": {
     "name": "Mangle Wurzel",
     "botanicalName": "Beta vulgaris",
     "hint": "Leaves as required, and roots 15-18 weeks. Store them in the ground and continue to harvest the tasty leaves.",
@@ -350,8 +350,8 @@
     "plantUrl": "/gardening/plant-finder/coriander/9636358",
     "imgUrl": "https://www.abc.net.au/cm/rimage/9619508-16x9-thumbnail.png?v=3"
   },
-  "Rocket ": {
-    "name": "Rocket ",
+  "Rocket": {
+    "name": "Rocket",
     "botanicalName": "Eruca vesiculate",
     "hint": "Begin to pick leaves as plants establish",
     "harvest": "Fast growing and hardy but can be very bitter if underwatered.",
@@ -502,7 +502,7 @@
     "plantUrl": "/gardening/plant-finder/oregano/9668736",
     "imgUrl": "https://www.abc.net.au/cm/rimage/9623950-16x9-thumbnail.jpg?v=3"
   },
-  "Pak Bok, Tatsoi, Bok Choy, Wong Bok": {
+  "Pak Choy, Bok Choy etc": {
     "name": "Pak Bok, Tatsoi, Bok Choy, Wong Bok",
     "botanicalName": "Brassica sp.",
     "hint": "These plants can be harvested at any stage of their life and eaten. Specific harvest times will vary from variety, and time of year.",
@@ -590,7 +590,7 @@
     "plantUrl": "/gardening/plant-finder/vietnamese-mint/9672278",
     "imgUrl": "https://www.abc.net.au/cm/rimage/9627156-16x9-thumbnail.jpg?v=3"
   },
-  "Quinoa (pronounced kin-wa)": {
+  "Quinoa": {
     "name": "Quinoa (pronounced kin-wa)",
     "botanicalName": "Chenopodium quinoa",
     "hint": "When leaves have dropped and seeds are dried and hard",
@@ -598,7 +598,7 @@
     "plantUrl": "/gardening/plant-finder/quinoa/9671912",
     "imgUrl": "https://www.abc.net.au/cm/rimage/9626924-16x9-thumbnail.jpg?v=3"
   },
-  "Warrigal Greens, New Zealand Spinach, Botany Bay Spinach": {
+  "Warrigal Greens": {
     "name": "Warrigal Greens, New Zealand Spinach, Botany Bay Spinach",
     "botanicalName": "Tetragonia tetragonoides",
     "hint": "8 weeks",

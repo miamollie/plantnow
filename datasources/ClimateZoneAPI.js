@@ -3,7 +3,7 @@ const { RESTDataSource } = require("apollo-datasource-rest");
 class ClimateZoneAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = "http://climateapi.scottpinkelman.com/api/v1/location/";
+    this.baseURL = process.env.CLIMATE_API;
   }
 
   async getClimate({ lat, long }) {

@@ -1,5 +1,5 @@
-const ClimateData = require("../../data.json");
-const PlantData = require("../../plants.json");
+const ClimateData = require("../data.json");
+const PlantData = require("../plants.json");
 
 class ClimatePlantsAPI {
   constructor() {
@@ -34,7 +34,7 @@ class ClimatePlantsAPI {
       if (!!this.plants[p]) {
         return this.plants[p];
       } else {
-        throw new Error(`Can't find data for ${p}`);
+        console.error(`Can't find data for ${p}`);
       }
     });
   }

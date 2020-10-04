@@ -1,8 +1,8 @@
 import { ApolloServer, gql } from "apollo-server-micro";
-const ClimateZoneAPI = require("./ClimateZoneAPI");
-const GeoIpAPI = require("./GeoIpAPI");
-const ClimatePlantsAPI = require("./ClimatePlantsAPI");
-const PlantAPI = require("./PlantAPI");
+const ClimateZoneAPI = require("../../datasources/ClimateZoneAPI");
+const GeoIpAPI = require("../../datasources/GeoIpAPI");
+const ClimatePlantsAPI = require("../../datasources/ClimatePlantsAPI");
+const PlantAPI = require("../../datasources/PlantAPI");
 
 const typeDefs = gql`
   type Query {

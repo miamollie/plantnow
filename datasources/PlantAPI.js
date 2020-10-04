@@ -1,4 +1,4 @@
-const PlantData = require("../../plants.json");
+const PlantData = require("../plants.json");
 
 class ClimatePlantsAPI {
   constructor() {
