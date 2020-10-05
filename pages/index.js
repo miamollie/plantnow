@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import Plants from "../components/Plants";
 import Layout from "../components/Layout";
+import { useState, useEffect } from "react";
 
 const GQL_API = "/api/graphql";
 
@@ -30,7 +31,16 @@ const fetcher = async () => {
 };
 
 export default function Index() {
-  const { data, error, isValidating } = useSWR(GQL_API, fetcher);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const { data, error, isValidating } = useSWR(
+    mounted ? GQL_API : null,
+    fetcher
+  );
 
   if (error) {
     console.log(error);
