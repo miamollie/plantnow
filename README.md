@@ -22,7 +22,7 @@ Uses [this hack](https://docs.netlify.com/routing/redirects/rewrites-proxies/#pr
 
 ## todo
 
-- material ui/ flip animation modals: https://material-ui.com/components/transitions/, https://material-ui.com/components/dialogs/
+- cache results
 - proper error handling; needs lots of attention; this.didEncounterError(error)
 - replace prod redirects with out-functions url from npm package https://github.com/netlify/next-on-netlify/issues/24
 

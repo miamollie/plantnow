@@ -1,10 +1,12 @@
 import useSWR from "swr";
+import Plants from "../components/Plants";
+import Layout from "../components/Layout";
 
 const GQL_API = "/api/graphql";
 
 const fetchPlantData = async () => {
   const query = `query { 
-    climate { name, plants { name, imgUrl } }
+    climate { name, plants { name, imgUrl, botanicalName, hint, harvest } }
   }`;
 
   const res = await fetch(GQL_API, {
@@ -23,6 +25,7 @@ const fetchPlantData = async () => {
 
 const fetcher = async () => {
   const res = await fetchPlantData();
+  //todo definitely needs caching
   return res.data;
 };
 
@@ -33,27 +36,20 @@ export default function Index() {
     console.log(error);
   }
 
-  if (isValidating || !data) {
-    return "Finding your plants..."; //TODO SHOULD BE BEAUTIFUL SVG PLANT ILLUSTRATION
+  if (isValidating) {
+    return <Layout>Finding plants for you..</Layout>; //TODO SHOULD BE BEAUTIFUL SVG PLANT ILLUSTRATION
+  }
+
+  if (!data) {
+    return <Layout>problem</Layout>; //TODO
   }
 
   const { name, plants } = data.climate;
+  const season = "spring"; //todo get from resolver
 
   return (
-    <main>
-      <h1>{`We've detected you're in: ${name}`}</h1>
-      <section>
-        <div>
-          {plants
-            ? plants.map((p, i) => (
-                <article key={i}>
-                  {p.name}
-                  <img src={p.imgUrl} role="presentational" alt="" />
-                </article>
-              ))
-            : "no plants..."}
-        </div>
-      </section>
-    </main>
+    <Layout>
+      <Plants plants={plants} season={season} climate={name} />
+    </Layout>
   );
 }
