@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
+import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
@@ -11,7 +11,9 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Grow from "@material-ui/core/GROW";
+import Grow from "@material-ui/core/Grow";
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
 
 export default function PlantDetail({
   plant: { name, imgUrl, botanicalName, hint, harvest },
@@ -54,21 +56,23 @@ export default function PlantDetail({
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {name} — {botanicalName}
+          {name}{" "}
+          <IconButton onClick={handleClose} ara-label="Close">
+            <CloseIcon />
+          </IconButton>
         </DialogTitle>
+
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {harvest}
+            <Typography>Botanical Name: {botanicalName}</Typography>
             <br />
-            {hint}
-            {/* inclide lightbulb icon */}
+            <Typography>When to harvest: {harvest}</Typography>
+            <br />
+            <Typography>
+              <EmojiObjectsIcon /> Hint: {hint}
+            </Typography>
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Close
-          </Button>
-        </DialogActions>
       </Dialog>
     </>
   );
@@ -81,36 +85,6 @@ const useStyles = makeStyles({
   },
 });
 
-// import React from "react";
-// import Button from "@material-ui/core/Button";
-// import Dialog from "@material-ui/core/Dialog";
-// import DialogActions from "@material-ui/core/DialogActions";
-// import DialogContent from "@material-ui/core/DialogContent";
-// import DialogContentText from "@material-ui/core/DialogContentText";
-// import DialogTitle from "@material-ui/core/DialogTitle";
-// import Grow from "@material-ui/core/Grow";
-
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Grow direction="up" ref={ref} {...props} />;
+  return <Grow ref={ref} {...props} />;
 });
-
-// export default function AlertDialogGrow() {
-//   const [open, setOpen] = React.useState(false);
-
-//   const handleClickOpen = () => {
-//     setOpen(true);
-//   };
-
-//   const handleClose = () => {
-//     setOpen(false);
-//   };
-//
-//   return (
-//     <div>
-//       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-//         Grow in alert dialog
-//       </Button>
-
-//     </div>
-//   );
-// }

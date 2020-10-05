@@ -1,8 +1,6 @@
 import useSWR from "swr";
-import Typography from "@material-ui/core/Typography";
-import PlantDetail from "../components/PlantDetail";
+import Plants from "../components/Plants";
 import Layout from "../components/Layout";
-import Box from "@material-ui/core/Box";
 
 const GQL_API = "/api/graphql";
 
@@ -38,25 +36,20 @@ export default function Index() {
     console.log(error);
   }
 
-  if (isValidating || !data) {
+  if (isValidating) {
     return <Layout>Finding plants for you..</Layout>; //TODO SHOULD BE BEAUTIFUL SVG PLANT ILLUSTRATION
   }
 
+  if (!data) {
+    return <Layout>problem</Layout>; //TODO
+  }
+
   const { name, plants } = data.climate;
-  const season = "spring"; //todo dynamic
+  const season = "spring"; //todo get from resolver
 
   return (
     <Layout>
-      {/* move to a plants component using grid, use grow and a slight animation delay as the results appear */}
-      <Typography variant="p" component="p" gutterBottom>
-        {`Looks like it's ${season} and you're in the ${name.toLowerCase()}, here are some things
-        you could plant now:`}
-      </Typography>
-      <Box component="section" style={{ display: "grid" }}>
-        {plants
-          ? plants.map((p) => <PlantDetail plant={p} key={p.name} />)
-          : "Sorry, we couldn't find any plants for you this time"}
-      </Box>
+      <Plants plants={plants} season={season} climate={name} />
     </Layout>
   );
 }
