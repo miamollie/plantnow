@@ -7,7 +7,7 @@ const GQL_API = "/api/graphql";
 
 const fetchPlantData = async () => {
   const query = `query { 
-    climate { name, plants { name, imgUrl, botanicalName, hint, harvest } }
+    climate { name, season, plants { name, imgUrl, botanicalName, hint, harvest } }
   }`;
 
   const res = await fetch(GQL_API, {
@@ -26,7 +26,6 @@ const fetchPlantData = async () => {
 
 const fetcher = async () => {
   const res = await fetchPlantData();
-  //todo definitely needs caching
   return res.data;
 };
 
@@ -43,19 +42,14 @@ export default function Index() {
   );
 
   if (error) {
-    console.log(error);
+    console.log(error); //TODO error page (dead plant?)
   }
 
-  if (isValidating) {
+  if (isValidating || !data) {
     return <Layout>Finding plants for you..</Layout>; //TODO SHOULD BE BEAUTIFUL SVG PLANT ILLUSTRATION
   }
 
-  if (!data) {
-    return <Layout>problem</Layout>; //TODO
-  }
-
-  const { name, plants } = data.climate;
-  const season = "spring"; //todo get from resolver
+  const { name, plants, season } = data.climate;
 
   return (
     <Layout>

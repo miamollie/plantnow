@@ -11,7 +11,7 @@ class GeoIpAPI extends RESTDataSource {
     if (!data.status === "success") {
       throw new Error("No geoip.."); //TODO do something more sensible
     }
-    return [data.lat, data.lon];
+    return { lat: data.lat, long: data.lon };
   }
 }
 
