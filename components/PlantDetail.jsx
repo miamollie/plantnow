@@ -62,7 +62,7 @@ export default function PlantDetail({
         </DialogTitle>
 
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText id="alert-dialog-description" as="div">
             <Typography>Botanical Name: {botanicalName}</Typography>
             <br />
             <Typography>When to harvest: {harvest}</Typography>
