@@ -21,6 +21,7 @@ const typeDefs = gql`
 
   type Climate {
     name: String
+    season: String!
     plants: [Plant!]
   }
 `;
@@ -34,9 +35,13 @@ const resolvers = {
       const {
         dataSources: { geoIpAPI, climateZoneAPI, climatePlantsAPI },
       } = context;
-      const [lat, long] = await geoIpAPI.getGeoIP();
-      const name = await climateZoneAPI.getClimate({ lat, long });
-      return climatePlantsAPI.getClimatePlants({ name });
+      const { lat, long } = await geoIpAPI.getGeoIP();
+      const { climateName, season, month } = await climateZoneAPI.getClimate({
+        lat,
+        long,
+      });
+      const plants = climatePlantsAPI.getClimatePlants({ climateName, month });
+      return { season, name: climateName, plants };
     },
   },
 };
