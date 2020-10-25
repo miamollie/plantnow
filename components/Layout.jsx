@@ -7,8 +7,8 @@ export default function Layout({ children }) {
 
   return (
     <Container className={classes.main} component="main" maxWidth="md">
-      <Typography variant="h2" component="h1" gutterBottom align="center">
-        What should I plant now?
+      <Typography variant="h2" component="h1" gutterBottom className={classes.title}>
+        What should I plant <em>Now</em>?
       </Typography>
       {children}
     </Container>
@@ -19,5 +19,9 @@ const useStyles = makeStyles((theme) => ({
   main: {
     minHeight: "100vh",
     backgroundColor: theme.palette.tertiary.main,
+  },
+  title: {
+    margin: "50px 0",
+    width: "50%",
   },
 }));

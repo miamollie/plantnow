@@ -18,7 +18,7 @@ export default function PlantDetail({
 }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const kebabName = name.toLowerCase().replace(" ", "-")
+  const kebabName = name.toLowerCase().replace(" ", "-");
 
   function handleOpen() {
     setOpen(true);
@@ -30,22 +30,25 @@ export default function PlantDetail({
 
   return (
     <>
-      <Card className={classes.root} component="article" onClick={handleOpen}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            alt=""
-            role="presentation"
-            image={imgUrl}
-            title={name}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2" align="center">
-              {name}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      <article
+        className={classes.card}
+        component="article"
+        onClick={handleOpen}
+      >
+        <CardMedia
+          className={classes.cardImage}
+          component="img"
+          alt=""
+          role="presentation"
+          image={imgUrl}
+          title={name}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2" align="right">
+            {name.toUpperCase()}
+          </Typography>
+        </CardContent>
+      </article>
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -78,9 +81,10 @@ export default function PlantDetail({
 }
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 180,
-    marginBottom: 30,
+  card: {
+    width: "200px",
+    height: "200px",
+    backgroundColor: "white", //todo from theme
   },
 });
 
