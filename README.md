@@ -27,4 +27,3 @@ Uses [this hack](https://docs.netlify.com/routing/redirects/rewrites-proxies/#pr
 
 - cache results
 - proper error handling; needs lots of attention; this.didEncounterError(error)
-- replace prod redirects with out-functions url from npm package https://github.com/netlify/next-on-netlify/issues/24
