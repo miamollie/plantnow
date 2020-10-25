@@ -4,10 +4,8 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -20,6 +18,7 @@ export default function PlantDetail({
 }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const kebabName = name.toLowerCase().replace(" ", "-")
 
   function handleOpen() {
     setOpen(true);
@@ -36,7 +35,7 @@ export default function PlantDetail({
           <CardMedia
             component="img"
             alt=""
-            role="presentational"
+            role="presentation"
             image={imgUrl}
             title={name}
           />
@@ -52,10 +51,10 @@ export default function PlantDetail({
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        aria-labelledby={`${kebabName}-alert-dialog-title`}
+        aria-describedby={`${kebabName}-alert-dialog-description`}
       >
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle id={`${kebabName}-alert-dialog-title`}>
           {name}{" "}
           <IconButton onClick={handleClose} ara-label="Close">
             <CloseIcon />

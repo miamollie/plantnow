@@ -2,6 +2,7 @@ import useSWR from "swr";
 import Plants from "../components/Plants";
 import Layout from "../components/Layout";
 import { useState, useEffect } from "react";
+import Head from "next/head";
 
 const GQL_API = "/api/graphql";
 
@@ -52,8 +53,14 @@ export default function Index() {
   const { name, plants, season } = data.climate;
 
   return (
-    <Layout>
-      <Plants plants={plants} season={season} climate={name} />
-    </Layout>
+    <>
+      <Head>
+        <title>Plant it now!</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Layout>
+        <Plants plants={plants} season={season} climate={name} />
+      </Layout>
+    </>
   );
 }
