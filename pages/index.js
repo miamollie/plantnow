@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import Plants from "../components/Plants";
 import Layout from "../components/Layout";
+import LoadingPlant from "../components/LoadingPlant";
 import { useState, useEffect } from "react";
 import Head from "next/head";
 
@@ -42,12 +43,16 @@ export default function Index() {
     fetcher
   );
 
-  if (error) {
-    console.log(error); //TODO error page (dead plant?)
+  if (isValidating || !data) {
+    return (
+      <Layout>
+        <LoadingPlant />
+      </Layout>
+    );
   }
 
-  if (isValidating || !data) {
-    return <Layout>Finding plants for you..</Layout>; //TODO SHOULD BE BEAUTIFUL SVG PLANT ILLUSTRATION
+  if (error) {
+    console.log(error); //TODO error page (dead plant?)
   }
 
   const { name, plants, season } = data.climate;
