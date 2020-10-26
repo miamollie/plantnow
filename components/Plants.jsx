@@ -9,7 +9,8 @@ export default function Plants({ plants, season, climate }) {
   return (
     <>
       <Typography variant="h2" component="h2" gutterBottom>
-        {`Popular plants in ${season} in the ${climate.toLowerCase()}:`}
+        {`${season} plants in the `}
+        <em>{climate.toLowerCase()}</em>
       </Typography>
       <Box component="section" className={classes.grid}>
         {plants
@@ -20,10 +21,17 @@ export default function Plants({ plants, season, climate }) {
   );
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   grid: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr 1fr",
     gridGap: "30px",
+    justifyContent: "center",
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "1fr 1fr 1fr",
+    },
+    [theme.breakpoints.down("xs")]: {
+      gridTemplateColumns: "1fr",
+    },
   },
-});
+}));

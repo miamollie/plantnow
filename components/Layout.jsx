@@ -7,12 +7,7 @@ export default function Layout({ children }) {
 
   return (
     <Container className={classes.main} component="main" maxWidth="md">
-      <Typography
-        variant="h1"
-        component="h1"
-        gutterBottom
-        className={classes.title}
-      >
+      <Typography variant="h1" component="h1" className={classes.title}>
         What should I plant <em>Now</em>?
       </Typography>
       {children}
@@ -27,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     margin: "50px 0",
-    width: "50%",
+    width: "55%",
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+    },
   },
 }));

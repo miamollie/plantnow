@@ -10,13 +10,24 @@ const theme = createMuiTheme({
       "sans-serif",
     ].join(","),
     h1: {
-      fontFamily: '"Playfair", serif',
+      fontFamily: '"Playfair Display", serif',
+      fontWeight: "100",
     },
     h2: {
-      fontFamily: '"Playfair", serif',
+      fontFamily: '"Playfair Display", serif',
+      fontSize: "2rem",
     },
     h3: {
       fontWeight: "bold",
+      fontSize: "1.5rem",
+    },
+    h4: {
+      fontWeight: "bold",
+      fontSize: "1rem",
+    },
+    h5: {
+      fontWeight: "bold",
+      fontSize: "1rem",
     },
   },
   palette: {

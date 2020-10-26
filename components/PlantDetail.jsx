@@ -1,14 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import Box from "@material-ui/core/Box";
 import Grow from "@material-ui/core/Grow";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
@@ -35,13 +30,11 @@ export default function PlantDetail({
         component="article"
         onClick={handleOpen}
       >
-        <CardMedia
+        <img
           className={classes.cardImage}
-          component="img"
           alt=""
           role="presentation"
-          image={imgUrl}
-          title={name}
+          src={imgUrl}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2" align="right">
@@ -57,36 +50,66 @@ export default function PlantDetail({
         aria-labelledby={`${kebabName}-alert-dialog-title`}
         aria-describedby={`${kebabName}-alert-dialog-description`}
       >
-        <DialogTitle id={`${kebabName}-alert-dialog-title`}>
-          {name}{" "}
-          <IconButton onClick={handleClose} ara-label="Close">
+        <div className={classes.dialogContents}>
+          <div className={classes.dialogContentsImage}></div>
+          <section className={classes.dialogContentsText}>
+            <Typography
+              gutterBottom
+              variant="h3"
+              id={`${kebabName}-alert-dialog-title`}
+            >
+              {name.toUpperCase()}
+              {/* <IconButton onClick={handleClose} ara-label="Close">
             <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description" as="div">
-            <Typography>Botanical Name: {botanicalName}</Typography>
-            <br />
-            <Typography>When to harvest: {harvest}</Typography>
-            <br />
-            <Typography>
-              <EmojiObjectsIcon /> Hint: {hint}
+          </IconButton> */}
             </Typography>
-          </DialogContentText>
-        </DialogContent>
+            <Box id={`${kebabName}-alert-dialog-description`}>
+              <Typography variant="h5" gutterBottom>
+                Botanical Name: {botanicalName}
+              </Typography>
+              <Typography gutterBottom>{harvest}</Typography>
+              <Typography gutterBottom variant="h4">
+                HINT:
+              </Typography>
+              <Typography gutterBottom>{hint}</Typography>
+            </Box>
+          </section>
+        </div>
       </Dialog>
     </>
   );
 }
 
-const useStyles = makeStyles({
+//todo take index and choose from 4 colours (red greden blue yellow?) and pop a leaf here too and close button should be same colour too
+const useStyles = makeStyles((theme) => ({
   card: {
-    width: "200px",
+    width: "200px", //make this responsive... based on grid layout breakpoints
     height: "200px",
-    backgroundColor: "white", //todo from theme
+    backgroundColor: "white",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    [theme.breakpoints.down("xs")]: {
+      width: "80vw",
+      height: "80vw",
+    },
   },
-});
+  cardImage: {
+    width: "100%",
+  },
+  dialogContents: {
+    display: "flex",
+    alignItems: "stretch",
+  },
+  dialogContentsText: {
+    padding: "60px 30px",
+    flex: 1,
+  },
+  dialogContentsImage: {
+    flex: 0.5,
+    backgroundColor: theme.palette.secondary.main,
+  },
+}));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Grow ref={ref} {...props} />;
