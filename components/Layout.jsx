@@ -7,7 +7,12 @@ export default function Layout({ children }) {
 
   return (
     <Container className={classes.main} component="main" maxWidth="md">
-      <Typography variant="h2" component="h1" gutterBottom className={classes.title}>
+      <Typography
+        variant="h1"
+        component="h1"
+        gutterBottom
+        className={classes.title}
+      >
         What should I plant <em>Now</em>?
       </Typography>
       {children}

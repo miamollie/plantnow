@@ -8,9 +8,8 @@ export default function Plants({ plants, season, climate }) {
 
   return (
     <>
-      <Typography variant="p" component="p" gutterBottom>
-        {`Looks like it's ${season} and you're in the ${climate.toLowerCase()}, here are some things
-        you could plant now:`}
+      <Typography variant="h2" component="h2" gutterBottom>
+        {`Popular plants in ${season} in the ${climate.toLowerCase()}:`}
       </Typography>
       <Box component="section" className={classes.grid}>
         {plants
