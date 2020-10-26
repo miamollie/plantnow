@@ -18,7 +18,6 @@ export default function Layout({ children }) {
 const useStyles = makeStyles((theme) => ({
   main: {
     minHeight: "100vh",
-    backgroundColor: theme.palette.tertiary.main,
   },
   title: {
     margin: "50px 0",
