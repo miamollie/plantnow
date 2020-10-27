@@ -6,18 +6,31 @@ export default function Layout({ children }) {
   const classes = useStyles();
 
   return (
-    <Container className={classes.main} component="main" maxWidth="md">
-      <Typography variant="h2" component="h1" gutterBottom align="center">
-        What should I plant now?
-      </Typography>
-      {children}
-    </Container>
+    <div className={classes.wrapper}>
+      <Container className={classes.main} component="main" maxWidth="md">
+        <Typography variant="h1" component="h1" className={classes.title}>
+          What should I plant <em>Now</em>?
+        </Typography>
+        {children}
+      </Container>
+    </div>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
+  wrapper: {
+    backgroundImage: "url(/static/backgroundFlowers.png)",
+    backgroundSize: "cover",
+    backgroundAttachment: "fixed",
+  },
   main: {
     minHeight: "100vh",
-    backgroundColor: theme.palette.tertiary.main,
+  },
+  title: {
+    padding: "50px 0",
+    width: "66%",
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+    },
   },
 }));

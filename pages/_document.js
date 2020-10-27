@@ -8,14 +8,18 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap"
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;600&display=swap"
+            rel="stylesheet"
+          />
+          <link rel="shortcut icon" href="/static/favicon.ico" />
         </Head>
-        <body>
+        <body style={{ backgroundImage: `url(/static/backgroundTexture.png)`, backgroundAttachment: "fixed" }}>
           <Main />
           <NextScript />
         </body>
