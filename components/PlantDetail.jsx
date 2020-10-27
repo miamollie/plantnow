@@ -90,7 +90,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-between",
     [theme.breakpoints.down("xs")]: {
-      width: "90vw",
+      width: "80vw",
+      height: "100px",
       flexDirection: "row",
       alignItems: "baseline",
     },
