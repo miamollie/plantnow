@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
           />
           <link rel="shortcut icon" href="/static/favicon.ico" />
         </Head>
-        <body style={{ backgroundImage: `url(/static/backgroundTexture.png), url(/static/backgroundFlowers.png)`, backgroundAttachment: "fixed" }}>
+        <body style={{ backgroundImage: `url(/static/backgroundTexture.png)`, backgroundAttachment: "fixed" }}>
           <Main />
           <NextScript />
         </body>

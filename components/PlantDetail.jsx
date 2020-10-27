@@ -79,22 +79,24 @@ export default function PlantDetail({
   );
 }
 
-//todo take index and choose from 4 colours (red greden blue yellow?) and pop a leaf here too and close button should be same colour too
+//todo take index and choose from 4 colours (red greden blue yellow?) and pop a leaf here too and close button should be same colour
+//todo hover effect?
 const useStyles = makeStyles((theme) => ({
   card: {
-    width: "200px", //make this responsive... based on grid layout breakpoints
+    width: "200px",
     height: "200px",
     backgroundColor: "white",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     [theme.breakpoints.down("xs")]: {
-      width: "80vw",
-      height: "80vw",
+      width: "90vw",
+      flexDirection: "row",
+      alignItems: "baseline",
     },
   },
   cardImage: {
-    width: "100%",
+    margin: "auto",
   },
   dialogContents: {
     display: "flex",

@@ -16,6 +16,8 @@ export default function Plants({ plants, season, climate }) {
         {plants
           ? plants.map((p) => <PlantDetail plant={p} key={p.name} />)
           : "Sorry, we couldn't find any plants for you this time"}
+        {/* TODO, better empty message for above */}
+        {/* TODO just the first 16 then a "more button" */}
       </Box>
     </>
   );
