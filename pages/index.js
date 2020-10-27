@@ -4,14 +4,14 @@ import Layout from "../components/Layout";
 import LoadingPlant from "../components/LoadingPlant";
 import { useState, useEffect } from "react";
 
-const GQL_API = "/api/graphql";
+const SWR_KEY = "/api/graphql";
 
 const fetchPlantData = async () => {
   const query = `query { 
     climate { name, season, plants { name, imgUrl, botanicalName, hint, harvest } }
   }`;
 
-  const res = await fetch(GQL_API, {
+  const res = await fetch(SWR_KEY, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -30,6 +30,10 @@ const fetcher = async () => {
   return res.data;
 };
 
+const fetchOptions = {
+  revalidateOnFocus: false,
+};
+
 export default function Index() {
   const [mounted, setMounted] = useState(false);
 
@@ -38,8 +42,9 @@ export default function Index() {
   }, []);
 
   const { data, error, isValidating } = useSWR(
-    mounted ? GQL_API : null,
-    fetcher
+    mounted ? SWR_KEY : null,
+    fetcher,
+    fetchOptions
   );
 
   if (isValidating || !data) {
