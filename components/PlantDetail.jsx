@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Dialog from "@material-ui/core/Dialog";
 import Box from "@material-ui/core/Box";
@@ -23,24 +22,26 @@ export default function PlantDetail({
   }
 
   return (
+    // Todo this whole thing should be a button or have an accessibility CTA, need to be tabbable
     <>
-      <article
-        className={classes.card}
-        component="article"
-        onClick={handleOpen}
-      >
-        <img
-          className={classes.cardImage}
-          alt=""
-          role="presentation"
-          src={imgUrl}
-        />
-        <CardContent>
+      <figure className={classes.card} onClick={handleOpen}>
+        <div className={classes.cardContent}>
+          <img
+            alt=""
+            role="presentation"
+            className={classes.cardImage}
+            src={imgUrl}
+            alt=""
+          />
           <Typography gutterBottom variant="h5" component="h2" align="right">
             {name.toUpperCase()}
           </Typography>
-        </CardContent>
-      </article>
+        </div>
+
+        <figcaption className={classes.cardCaption}>
+          <Typography className={classes.cardCaptionCTA}>Read More</Typography>
+        </figcaption>
+      </figure>
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -80,18 +81,30 @@ export default function PlantDetail({
 }
 
 //todo take index and choose from 4 colours (red greden blue yellow?) and pop a leaf here too and close button should be same colour
-//todo hover effect?
 const useStyles = makeStyles((theme) => ({
   card: {
+    margin: 0,
+    position: "relative",
+    overflow: "hidden",
     width: "200px",
     height: "200px",
     backgroundColor: "white",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
+    cursor: "pointer",
+    transition: "all ease 0.35s",
+    "&:hover, &:focus": {
+      boxShadow: "-1px 1px 10px -5px #444",
+      outline: "none",
+    },
+    "&:hover $cardCaption": {
+      transform: "translate3d(0, -50%,0)",
+    },
+    "&:hover $cardCaptionCTA": {
+      transitionDelay: "0.05s",
+      opacity: 1,
+    },
     [theme.breakpoints.down("xs")]: {
       width: "80vw",
-      height: "100px",
+      height: "125px",
       flexDirection: "row",
       alignItems: "baseline",
     },
@@ -99,6 +112,43 @@ const useStyles = makeStyles((theme) => ({
   cardImage: {
     margin: "auto",
   },
+  cardContent: {
+    padding: "16px 16px 24px 16px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "100%",
+    width: "100%",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "row",
+      alignItems: "baseline",
+    },
+  },
+
+  cardCaption: {
+    top: "auto",
+    bottom: 0,
+    height: "3.75em",
+    background: "#fff",
+    color: "#000",
+    textTransform: "uppercase",
+    backfaceVisibility: "hidden",
+    transition: "transform 0.35s",
+    transform: "translate3d(0,100%,0)",
+  },
+  cardCaptionCTA: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    width: "100%",
+    height: "100%",
+    opacity: 0,
+    transition: "opacity 0.35s",
+    backfaceVisibility: "hidden",
+    margin: 0,
+    paddingLeft: "10px",
+  },
+
   dialogContents: {
     display: "flex",
     alignItems: "stretch",
