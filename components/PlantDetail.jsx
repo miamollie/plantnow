@@ -51,7 +51,9 @@ export default function PlantDetail({
         aria-describedby={`${kebabName}-alert-dialog-description`}
       >
         <div className={classes.dialogContents}>
-          <div className={classes.dialogContentsImage}></div>
+          <div className={classes.dialogContentsImageWrapper}>
+            <div className={classes.dialogContentsImage}></div>
+          </div>
           <section className={classes.dialogContentsText}>
             <Typography
               gutterBottom
@@ -82,8 +84,7 @@ export default function PlantDetail({
   );
 }
 
-//todo take index and choose from 4 colours (red greden blue yellow?) and pop a leaf here too and close button should be same colour
-const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles((theme) => ({
   card: {
     margin: 0,
     position: "relative",
@@ -159,9 +160,19 @@ const useStyles = makeStyles((theme) => ({
     padding: "60px 30px",
     flex: 1,
   },
-  dialogContentsImage: {
+  dialogContentsImageWrapper: {
     flex: 0.5,
     backgroundColor: theme.palette.secondary.main,
+    position: "relative",
+  },
+  dialogContentsImage: {
+    position: "absolute",
+    height: "50%",
+    width: "100%",
+    bottom: 0,
+    backgroundImage: "url('/static/detailLeaf.png')",
+    backgroundSize: "contain",
+    backgroundPosition: "center",
   },
 }));
 
