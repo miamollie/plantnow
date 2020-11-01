@@ -7,6 +7,9 @@ export default function Layout({ children }) {
 
   return (
     <div className={classes.wrapper}>
+      <div className={classes.leafContainer}>
+        <img className={classes.leafImage} src="static/headerFlowers.png" />
+      </div>
       <Container className={classes.main} component="main" maxWidth="md">
         <Typography variant="h1" component="h1" className={classes.title}>
           What should I plant <em>Now</em>?
@@ -23,8 +26,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundAttachment: "fixed",
   },
+  leafContainer: {
+    position: "fixed",
+  },
+  leafImage: { width: "100%" },
   main: {
     minHeight: "100vh",
+    paddingBottom: "20vh",
+    transform: "translate(0)", //brings the main content to the front without z index
   },
   title: {
     padding: "50px 0",
