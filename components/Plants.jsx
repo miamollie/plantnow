@@ -3,6 +3,8 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import PlantDetail from "../components/PlantDetail";
 
+const DEFAULT_PLANT_NUMBER = 16;
+
 export default function Plants({ plants, season, climate }) {
   const classes = useStyles();
 
