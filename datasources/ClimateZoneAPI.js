@@ -12,48 +12,51 @@ class ClimateZoneAPI extends RESTDataSource {
       E: "POLAR ZONE", //CURRENTLY NO DATA ON POLAR ZONE :(
     };
     this.seasons = {
-      northern: ["Spring", "Summer", "Autumn", "Winter"],
+      northern: ["Summer", "Autumn", "Winter", "Spring"],
       southern: ["Winter", "Spring", "Summer", "Autumn"],
     };
-    this.monthMap = {
-      0: "January",
-      1: "February",
-      2: "March",
-      3: "April",
-      4: "May",
-      5: "June",
-      6: "July",
-      7: "August",
-      8: "September",
-      9: "October",
-      10: "November",
-      11: "December",
-    };
   }
 
-  getSeasonIndex(m) {
-    return Math.floor((m / 12) * 4) % 4;
-  }
-
-  getSeason(isNorthernHemisphere) {
-    const month = new Date().getMonth();
-    let seasonsArray;
-    if (isNorthernHemisphere) {
-      seasonsArray = this.seasons["northern"];
-    } else {
-      seasonsArray = this.seasons["southern"];
+  getSeason(isNorthernHemisphere, date) {
+    const month = date.getMonth();
+    let seasonIndex;
+    console.log(month);
+    switch (month) {
+      case 12:
+      case 1:
+      case 2:
+        seasonIndex = 0;
+        break;
+      case 3:
+      case 4:
+      case 5:
+        seasonIndex = 1;
+        break;
+      case 6:
+      case 7:
+      case 8:
+        seasonIndex = 2;
+        break;
+      case 9:
+      case 10:
+      case 11:
+        seasonIndex = 3;
+        break;
     }
-    return seasonsArray[this.getSeasonIndex(month)];
+    return isNorthernHemisphere
+      ? this.seasons["northern"][seasonIndex]
+      : this.seasons["southern"][seasonIndex];
   }
 
   async getClimate({ lat, long }) {
     const res = await this.get(`${lat}/${long}`).catch((e) => console.log(e));
     const zone = res.return_values[0].koppen_geiger_zone;
-    const season = this.getSeason(lat > 0);
+    const date = new Date();
+
+    const season = this.getSeason(lat > 0, date);
 
     const climateName = this.climateZoneMap[zone[0]];
-
-    const month = this.monthMap[new Date().getMonth()];
+    const month = date.toLocaleString("en-GB", { month: "long" });
     return { season, climateName, month };
   }
 }
