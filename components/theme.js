@@ -44,6 +44,15 @@ const theme = createMuiTheme({
       default: "#fff",
     },
   },
+  overrides: {
+    // Style sheet name ⚛️
+    MuiIconButton: {
+      root: {
+        color: "white",
+        backgroundColor: "#668068",
+      },
+    },
+  },
 });
 
 export default responsiveFontSizes(theme);

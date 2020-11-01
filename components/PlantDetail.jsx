@@ -59,9 +59,6 @@ export default function PlantDetail({
               id={`${kebabName}-alert-dialog-title`}
             >
               {name.toUpperCase()}
-              {/* <IconButton onClick={handleClose} ara-label="Close">
-            <CloseIcon />
-          </IconButton> */}
             </Typography>
             <Box id={`${kebabName}-alert-dialog-description`}>
               <Typography variant="h5" gutterBottom>
@@ -74,6 +71,11 @@ export default function PlantDetail({
               <Typography gutterBottom>{hint}</Typography>
             </Box>
           </section>
+          <div className={classes.dialogButton}>
+            <IconButton size="small" onClick={handleClose} aria-label="Close">
+              <CloseIcon />
+            </IconButton>
+          </div>
         </div>
       </Dialog>
     </>
@@ -90,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     height: "200px",
     backgroundColor: "white",
     cursor: "pointer",
-    transition: "all ease 0.35s",
+    transition: "box-shadow ease 0.35s",
     "&:hover, &:focus": {
       boxShadow: "-1px 1px 10px -5px #444",
       outline: "none",
@@ -124,7 +126,6 @@ const useStyles = makeStyles((theme) => ({
       alignItems: "baseline",
     },
   },
-
   cardCaption: {
     top: "auto",
     bottom: 0,
@@ -148,11 +149,12 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     paddingLeft: "10px",
   },
-
   dialogContents: {
     display: "flex",
     alignItems: "stretch",
+    position: "relative",
   },
+  dialogButton: { padding: "10px" },
   dialogContentsText: {
     padding: "60px 30px",
     flex: 1,
