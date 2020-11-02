@@ -6,17 +6,19 @@ export default function LoadingPlant() {
   const classes = useStyles();
   const theme = useTheme();
 
-  //TODO A11y label
   return (
     <Box className={classes.wrapper}>
       <svg
+        role="img"
         className={classes.svg}
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"
         width="100%"
         height="100%"
         viewBox="0 0 1000 1000"
+        aria-labelledby="loaderTitle"
       >
+        <title id="loaderTitle">Loading plants in your climate</title>
         <path
           strokeWidth="3"
           fill="none"
