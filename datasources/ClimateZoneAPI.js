@@ -12,15 +12,14 @@ class ClimateZoneAPI extends RESTDataSource {
       E: "POLAR ZONE", //CURRENTLY NO DATA ON POLAR ZONE :(
     };
     this.seasons = {
-      northern: ["Summer", "Autumn", "Winter", "Spring"],
-      southern: ["Winter", "Spring", "Summer", "Autumn"],
+      northern: ["Winter", "Spring", "Summer", "Autumn"],
+      southern: ["Summer", "Autumn", "Winter", "Spring"],
     };
   }
 
   getSeason(isNorthernHemisphere, date) {
     const month = date.getMonth();
     let seasonIndex;
-    console.log(month);
     switch (month) {
       case 12:
       case 1:
