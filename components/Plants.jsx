@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import PlantDetail from "../components/PlantDetail";
 
-const DEFAULT_PLANT_NUMBER = 16;
+const DEFAULT_PLANT_NUMBER = 12;
 
 export default function Plants({ plants, season, climate }) {
   const classes = useStyles();
@@ -19,7 +19,7 @@ export default function Plants({ plants, season, climate }) {
           ? plants.map((p) => <PlantDetail plant={p} key={p.name} />)
           : "Sorry, we couldn't find any plants for you this time"}
         {/* TODO, better empty message for above */}
-        {/* TODO just the first 16 then a "more button" */}
+        {/* TODO just the first 12 then a "more button" */}
       </Box>
     </>
   );
