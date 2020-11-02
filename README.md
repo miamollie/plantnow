@@ -1,5 +1,7 @@
 # Plant It Now
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/42802ad5-190c-4428-9889-c1a0668a480b/deploy-status)](https://app.netlify.com/sites/plantnow/deploys)
+
 Uses GEOip lookup and the Climate zone API along with data from ABC gardens to determine what is best for you to plant in your garden right now :)
 
 Live now at: https://plantnow.netlify.app/

@@ -8,7 +8,7 @@ export default function Layout({ children }) {
   return (
     <div className={classes.wrapper}>
       <div className={classes.leafContainer}>
-        <img className={classes.leafImage} src="static/headerFlowers.png" />
+        <img className={classes.leafImage} src="static/headerFlowers.png" alt="" role="presentation" />
       </div>
       <Container className={classes.main} component="main" maxWidth="md">
         <Typography variant="h1" component="h1" className={classes.title}>
