@@ -18,7 +18,7 @@ export default function MyApp(props) {
   return (
     <>
       <Head>
-        <title>What to plant now?</title>
+        <title>What should I plant now?</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
