@@ -28,8 +28,12 @@ export default function Plants({ plants, season, climate }) {
         <em>{climate.toLowerCase()}</em>
       </Typography>
       <Box component="section" className={classes.grid}>
-        {currentPlants.map((p) => (
-          <PlantDetail plant={p} key={p.name} />
+        {currentPlants.map((p, i) => (
+          <PlantDetail
+            plant={p}
+            key={p.name}
+            index={i % DEFAULT_PLANT_NUMBER}
+          />
         ))}
       </Box>
       {/* TODO, do something nice when they mount */}
