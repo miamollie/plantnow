@@ -7,9 +7,11 @@ import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 
 export default function PlantDetail({
+  index,
   plant: { name, imgUrl, botanicalName, hint, harvest },
 }) {
   const classes = useStyles();
+  const timeout = (1000 * index) / 4;
   const [open, setOpen] = React.useState(false);
   const kebabName = name.toLowerCase().replace(" ", "-");
 
@@ -24,24 +26,28 @@ export default function PlantDetail({
   return (
     // Todo this whole thing should be a button or have an accessibility CTA, need to be tabbable
     <>
-      <figure className={classes.card} onClick={handleOpen}>
-        <div className={classes.cardContent}>
-          <img
-            alt=""
-            role="presentation"
-            className={classes.cardImage}
-            src={imgUrl}
-            alt=""
-          />
-          <Typography gutterBottom variant="h5" component="h2" align="right">
-            {name.toUpperCase()}
-          </Typography>
-        </div>
+      <Grow in={true} {...{ timeout }}>
+        <figure className={classes.card} onClick={handleOpen}>
+          <div className={classes.cardContent}>
+            <img
+              alt=""
+              role="presentation"
+              className={classes.cardImage}
+              src={imgUrl}
+              alt=""
+            />
+            <Typography gutterBottom variant="h5" component="h2" align="right">
+              {name.toUpperCase()}
+            </Typography>
+          </div>
 
-        <figcaption className={classes.cardCaption}>
-          <Typography className={classes.cardCaptionCTA}>Read More</Typography>
-        </figcaption>
-      </figure>
+          <figcaption className={classes.cardCaption}>
+            <Typography className={classes.cardCaptionCTA}>
+              Read More
+            </Typography>
+          </figcaption>
+        </figure>
+      </Grow>
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -66,6 +72,9 @@ export default function PlantDetail({
               <Typography variant="h5" gutterBottom>
                 Botanical Name: {botanicalName}
               </Typography>
+              <Typography gutterBottom variant="h4">
+                HARVEST:
+              </Typography>
               <Typography gutterBottom>{harvest}</Typography>
               <Typography gutterBottom variant="h4">
                 HINT:
@@ -84,7 +93,7 @@ export default function PlantDetail({
   );
 }
 
-  const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     margin: 0,
     position: "relative",
