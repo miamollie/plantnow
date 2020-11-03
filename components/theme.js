@@ -38,7 +38,7 @@ const theme = createMuiTheme({
       main: "#f1e9e7",
     },
     tertiary: {
-      main: "#eaf0e9",
+      main: "#eaf0e9", // dark pink #e8d2c7
     },
     background: {
       default: "#fff",
@@ -50,14 +50,22 @@ const theme = createMuiTheme({
       root: {
         color: "white",
         backgroundColor: "#668068",
+        "&:hover": {
+          backgroundColor: "#e8d2c7",
+        },
+      },
+    },
+    MuiButton: {
+      root: {
+        color: "white",
+        backgroundColor: "#668068",
+        "&:hover": {
+          backgroundColor: "#e8d2c7",
+        },
+        fontWeight: "bold",
       },
     },
   },
 });
 
 export default responsiveFontSizes(theme);
-
-//  "Playfair"
-
-// H1h2 playfair
-// h3 poppins bold
