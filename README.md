@@ -8,7 +8,7 @@ Live now at: https://plantnow.netlify.app/
 
 ### GEOip lookup
 
-Using free: http://ip-api.com/json
+Using free: https://freegeoip.app/json/
 
 ### Climate API
 
