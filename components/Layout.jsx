@@ -22,7 +22,7 @@ export default function Layout({ children }) {
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    backgroundImage: "url(/static/backgroundFlowers.png)",
+    backgroundImage: "url(/static/backgroundFlowers.jpeg)",
     backgroundSize: "cover",
     backgroundAttachment: "fixed",
   },
