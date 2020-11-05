@@ -182,6 +182,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: "url('/static/detailLeaf.png')",
     backgroundSize: "contain",
     backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
   },
 }));
 
