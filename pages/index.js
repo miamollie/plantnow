@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import Plants from "../components/Plants";
 import Layout from "../components/Layout";
-import LoadingPlant from "../components/LoadingPlant";
+import Loader from "../components/Loader";
 import { useState, useEffect } from "react";
 
 const SWR_KEY = "/api/graphql";
@@ -50,7 +50,7 @@ export default function Index() {
   if (isValidating || !data) {
     return (
       <Layout>
-        <LoadingPlant />
+        <Loader />
       </Layout>
     );
   }
