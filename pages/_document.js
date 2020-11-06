@@ -8,6 +8,17 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <meta charset="utf-8" />
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+          />
+          <meta
+            name="description"
+            content="Plant now uses your current location to find the best plants for your climate and season"
+          />
+          <meta name="keywords" content="plant climate season planting"></meta>
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link
             href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap"

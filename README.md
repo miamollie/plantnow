@@ -25,7 +25,9 @@ climate -> all plants that can be planted in a climate zone by month
 
 Uses [this hack](https://docs.netlify.com/routing/redirects/rewrites-proxies/#proxy-to-another-service) to upgrade http apis to https by proxying through netlify as redirects. Required because the climate api in use has not published a HTTPS version
 
+### PWA
+Uses https://github.com/shadowwalker/next-pwa 
+
 ## todo
 
-- cache results
 - proper error handling; needs lots of attention; this.didEncounterError(error)
