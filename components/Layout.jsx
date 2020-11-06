@@ -10,7 +10,7 @@ export default function Layout({ children }) {
       <div className={classes.leafContainer}>
         <img
           className={classes.leafImage}
-          src="static/headerFlowers.png"
+          src="static/headerFlowers.jpeg"
           alt=""
           role="presentation"
         />
