@@ -22,31 +22,38 @@ export default function PlantDetail({
   function handleClose() {
     setOpen(false);
   }
-
+  // TODO pull cardmodal out into another component
   return (
-    // Todo this whole thing should be a button or have an accessibility CTA, need to be tabbable
     <>
       <Grow in={true} {...{ timeout }}>
-        <figure className={classes.card} onClick={handleOpen}>
-          <div className={classes.cardContent}>
-            <img
-              alt=""
-              role="presentation"
-              className={classes.cardImage}
-              src={imgUrl}
-              alt=""
-            />
-            <Typography gutterBottom variant="h5" component="h2" align="right">
-              {name.toUpperCase()}
-            </Typography>
-          </div>
-
-          <figcaption className={classes.cardCaption}>
-            <Typography className={classes.cardCaptionCTA}>
-              Read More
-            </Typography>
-          </figcaption>
-        </figure>
+        <li className={classes.cardListContainer}>
+          <figure className={classes.card}>
+            <div className={classes.cardContent}>
+              <img
+                alt=""
+                role="presentation"
+                className={classes.cardImage}
+                src={imgUrl}
+                alt=""
+              />
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h2"
+                align="right"
+              >
+                <button className={classes.cardButton} onClick={handleOpen}>
+                  {name.toUpperCase()}
+                </button>
+              </Typography>
+            </div>
+            <figcaption className={classes.cardCaption} aria-hidden="true">
+              <Typography className={classes.cardCaptionCTA}>
+                Read More
+              </Typography>
+            </figcaption>
+          </figure>
+        </li>
       </Grow>
       <Dialog
         open={open}
@@ -94,18 +101,13 @@ export default function PlantDetail({
 }
 
 const useStyles = makeStyles((theme) => ({
-  card: {
-    margin: 0,
+  cardListContainer: {
     position: "relative",
-    overflow: "hidden",
     width: "200px",
     height: "200px",
-    backgroundColor: "white",
-    cursor: "pointer",
     transition: "box-shadow ease 0.35s",
     "&:hover, &:focus": {
       boxShadow: "-1px 1px 10px -5px #444",
-      outline: "none",
     },
     "&:hover $cardCaption": {
       transform: "translate3d(0, -50%,0)",
@@ -114,6 +116,36 @@ const useStyles = makeStyles((theme) => ({
       transitionDelay: "0.05s",
       opacity: 1,
     },
+  },
+  cardButton: {
+    cursor: "pointer",
+    border: "none",
+    borderRadius: 0,
+    background: "transparent",
+    padding: 0,
+    transition: "box-shadow ease 0.35s",
+    "&:hover, &:focus": {
+      outline: "none",
+    },
+    "&::after": {
+      content: "close-quote",
+      color: "transparent",
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+    },
+  },
+  card: {
+    margin: 0,
+    position: "relative",
+    overflow: "hidden",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "white",
+    cursor: "pointer",
+
     [theme.breakpoints.down("xs")]: {
       width: "80vw",
       height: "125px",
