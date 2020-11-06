@@ -27,7 +27,7 @@ export default function Plants({ plants, season, climate }) {
         {`${season} plants in the `}
         <em>{climate.toLowerCase()}</em>
       </Typography>
-      <Box component="section" className={classes.grid}>
+      <Box component="ul" className={classes.grid}>
         {currentPlants.map((p, i) => (
           <PlantDetail
             plant={p}
@@ -36,7 +36,6 @@ export default function Plants({ plants, season, climate }) {
           />
         ))}
       </Box>
-      {/* TODO, do something nice when they mount */}
       <Grid container direction="row" justify="center" alignItems="center">
         {offset < plants.length ? (
           <Button
@@ -60,7 +59,9 @@ export default function Plants({ plants, season, climate }) {
 
 const useStyles = makeStyles((theme) => ({
   grid: {
-    marginBottom: "30px", //TODO move 30px into theme
+    listStyleType: "none",
+    padding: 0,
+    margin: "0 0 30px 0", //TODO move 30px into theme
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr 1fr",
     gridGap: "30px",
