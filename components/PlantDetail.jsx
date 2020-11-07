@@ -1,19 +1,14 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Dialog from "@material-ui/core/Dialog";
-import Box from "@material-ui/core/Box";
 import Grow from "@material-ui/core/Grow";
-import CloseIcon from "@material-ui/icons/Close";
-import IconButton from "@material-ui/core/IconButton";
+import dynamic from "next/dynamic";
 
-export default function PlantDetail({
-  index,
-  plant: { name, imgUrl, botanicalName, hint, harvest },
-}) {
+const PlantModal = dynamic(() => import("./PlantModal"));
+
+export default function PlantDetail({ index, plant }) {
   const classes = useStyles();
   const timeout = (1000 * index) / 4;
   const [open, setOpen] = React.useState(false);
-  const kebabName = name.toLowerCase().replace(" ", "-");
 
   function handleOpen() {
     setOpen(true);
@@ -22,7 +17,7 @@ export default function PlantDetail({
   function handleClose() {
     setOpen(false);
   }
-  // TODO pull cardmodal out into another component
+
   return (
     <>
       <Grow in={true} {...{ timeout }}>
@@ -33,7 +28,7 @@ export default function PlantDetail({
                 alt=""
                 role="presentation"
                 className={classes.cardImage}
-                src={imgUrl}
+                src={plant.imgUrl}
                 alt=""
               />
               <Typography
@@ -43,7 +38,7 @@ export default function PlantDetail({
                 align="right"
               >
                 <button className={classes.cardButton} onClick={handleOpen}>
-                  {name.toUpperCase()}
+                  {plant.name.toUpperCase()}
                 </button>
               </Typography>
             </div>
@@ -55,47 +50,7 @@ export default function PlantDetail({
           </figure>
         </li>
       </Grow>
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-labelledby={`${kebabName}-alert-dialog-title`}
-        aria-describedby={`${kebabName}-alert-dialog-description`}
-      >
-        <div className={classes.dialogContents}>
-          <div className={classes.dialogContentsImageWrapper}>
-            <div className={classes.dialogContentsImage}></div>
-          </div>
-          <section className={classes.dialogContentsText}>
-            <Typography
-              gutterBottom
-              variant="h3"
-              id={`${kebabName}-alert-dialog-title`}
-            >
-              {name.toUpperCase()}
-            </Typography>
-            <Box id={`${kebabName}-alert-dialog-description`}>
-              <Typography variant="h5" gutterBottom>
-                Botanical Name: {botanicalName}
-              </Typography>
-              <Typography gutterBottom variant="h4">
-                HARVEST:
-              </Typography>
-              <Typography gutterBottom>{harvest}</Typography>
-              <Typography gutterBottom variant="h4">
-                HINT:
-              </Typography>
-              <Typography gutterBottom>{hint}</Typography>
-            </Box>
-          </section>
-          <div className={classes.dialogButton}>
-            <IconButton size="small" onClick={handleClose} aria-label="Close">
-              <CloseIcon />
-            </IconButton>
-          </div>
-        </div>
-      </Dialog>
+      <PlantModal open={open} plant={plant} handleClose={handleClose} />
     </>
   );
 }
@@ -217,7 +172,3 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
   },
 }));
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Grow ref={ref} {...props} />;
-});
