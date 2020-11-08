@@ -2,7 +2,6 @@ import useSWR from "swr";
 import Plants from "../components/Plants";
 import Layout from "../components/Layout";
 import Loader from "../components/Loader";
-import { useState, useEffect } from "react";
 
 const SWR_KEY = "/api/graphql";
 const GEOIP_API = "https://freegeoip.app/json/"; //todo move to env
@@ -46,14 +45,10 @@ const fetcher = async () => {
 const fetchOptions = {
   revalidateOnFocus: false,
 };
+import useIsMounted from "../components/hooks/useIsMounted";
 
 export default function Index() {
-  const [mounted, setMounted] = useState(false); //todo move to hook
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+  const mounted = useIsMounted();
   const { data, error, isValidating } = useSWR(
     mounted ? SWR_KEY : null,
     fetcher,
