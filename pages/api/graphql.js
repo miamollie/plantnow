@@ -1,12 +1,11 @@
 import { ApolloServer, gql } from "apollo-server-micro";
 const ClimateZoneAPI = require("../../datasources/ClimateZoneAPI");
-const GeoIpAPI = require("../../datasources/GeoIpAPI");
 const ClimatePlantsAPI = require("../../datasources/ClimatePlantsAPI");
 const PlantAPI = require("../../datasources/PlantAPI");
 
 const typeDefs = gql`
   type Query {
-    climate: Climate!
+    climate(lat: String!, long: String!): Climate!
     plant(name: String!): Plant
   }
 
@@ -31,11 +30,11 @@ const resolvers = {
     plant(_parent, args, _context) {
       return context.plantAPI.getPlant({ name: args.name });
     },
-    climate: async (_parent, _args, context) => {
+    climate: async (_parent, args, context) => {
       const {
-        dataSources: { geoIpAPI, climateZoneAPI, climatePlantsAPI },
+        dataSources: { climateZoneAPI, climatePlantsAPI },
       } = context;
-      const { lat, long } = await geoIpAPI.getGeoIP();
+      const { lat, long } = args;
       const { climateName, season, month } = await climateZoneAPI.getClimate({
         lat,
         long,
@@ -52,7 +51,6 @@ const apolloServer = new ApolloServer({
   dataSources: () => {
     return {
       climateZoneAPI: new ClimateZoneAPI(),
-      geoIpAPI: new GeoIpAPI(),
       climatePlantsAPI: new ClimatePlantsAPI(),
       plantAPI: new PlantAPI(),
     };

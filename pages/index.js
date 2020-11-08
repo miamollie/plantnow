@@ -2,13 +2,24 @@ import useSWR from "swr";
 import Plants from "../components/Plants";
 import Layout from "../components/Layout";
 import Loader from "../components/Loader";
-import { useState, useEffect } from "react";
 
 const SWR_KEY = "/api/graphql";
+const GEOIP_API = "https://freegeoip.app/json/"; //todo move to env
 
-const fetchPlantData = async () => {
+const fetchGeoIP = async () => {
+  const res = await fetch(GEOIP_API);
+  const data = await res.json().catch((e) => {
+    throw new Error(e); //todo add error boundary
+  });
+  if (!data.status === "success") {
+    throw new Error(e); //todo add error boundary
+  }
+  return [data.latitude, data.longitude];
+};
+
+const fetchPlantData = async ({ lat, long }) => {
   const query = `query { 
-    climate { name, season, plants { name, imgUrl, botanicalName, hint, harvest } }
+    climate(lat: "${lat}" , long: "${long}") { name, season, plants { name, imgUrl, botanicalName, hint, harvest } }
   }`;
 
   const res = await fetch(SWR_KEY, {
@@ -26,21 +37,18 @@ const fetchPlantData = async () => {
 };
 
 const fetcher = async () => {
-  const res = await fetchPlantData();
+  const [lat, long] = await fetchGeoIP();
+  const res = await fetchPlantData({ lat, long });
   return res.data;
 };
 
 const fetchOptions = {
   revalidateOnFocus: false,
 };
+import useIsMounted from "../components/hooks/useIsMounted";
 
 export default function Index() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+  const mounted = useIsMounted();
   const { data, error, isValidating } = useSWR(
     mounted ? SWR_KEY : null,
     fetcher,
