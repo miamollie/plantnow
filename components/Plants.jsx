@@ -61,10 +61,10 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     listStyleType: "none",
     padding: 0,
-    margin: "0 0 30px 0", //TODO move 30px into theme
+    margin: `0 0 ${theme.spacing(3)}px 0`,
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr 1fr",
-    gridGap: "30px",
+    gridGap: `${theme.spacing(3)}px`,
     justifyContent: "center",
     [theme.breakpoints.down("sm")]: {
       gridTemplateColumns: "1fr 1fr 1fr",
