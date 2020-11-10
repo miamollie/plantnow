@@ -58,11 +58,15 @@ export default function PlantDetail({ index, plant }) {
 const useStyles = makeStyles((theme) => ({
   cardListContainer: {
     position: "relative",
-    width: "200px",
-    height: "200px",
-    transition: "box-shadow ease 0.35s",
+    width: `${theme.spacing(25)}px`,
+    height: `${theme.spacing(25)}px`,
+    transition: `box-shadow ease ${theme.transitions.duration.standard}s`,
+    [theme.breakpoints.down("xs")]: {
+      width: "80vw",
+      height: "125px",
+    },
     "&:hover, &:focus": {
-      boxShadow: "-1px 1px 10px -5px #444",
+      boxShadow: theme.shadows[3],
     },
     "&:hover $cardCaption": {
       transform: "translate3d(0, -50%,0)",
@@ -78,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 0,
     background: "transparent",
     padding: 0,
-    transition: "box-shadow ease 0.35s",
+    transition: `box-shadow ease ${theme.transitions.duration.standard}s`,
     "&:hover, &:focus": {
       outline: "none",
     },
@@ -131,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#000",
     textTransform: "uppercase",
     backfaceVisibility: "hidden",
-    transition: "transform 0.35s",
+    transition: `transform ${theme.transitions.duration.standard}s`,
     transform: "translate3d(0,100%,0)",
   },
   cardCaptionCTA: {
@@ -141,34 +145,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100%",
     opacity: 0,
-    transition: "opacity 0.35s",
+    transition: `opacity ${theme.transitions.duration.standard}s`,
     backfaceVisibility: "hidden",
     margin: 0,
     paddingLeft: "10px",
-  },
-  dialogContents: {
-    display: "flex",
-    alignItems: "stretch",
-    position: "relative",
-  },
-  dialogButton: { padding: "10px" },
-  dialogContentsText: {
-    padding: "60px 30px",
-    flex: 1,
-  },
-  dialogContentsImageWrapper: {
-    flex: 0.5,
-    backgroundColor: theme.palette.secondary.main,
-    position: "relative",
-  },
-  dialogContentsImage: {
-    position: "absolute",
-    height: "50%",
-    width: "100%",
-    bottom: 0,
-    backgroundImage: "url('/static/detailLeaf.png')",
-    backgroundSize: "contain",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
   },
 }));
