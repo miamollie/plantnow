@@ -20,25 +20,27 @@ class ClimateZoneAPI extends RESTDataSource {
   getSeason(isNorthernHemisphere, date) {
     const month = date.getMonth();
     let seasonIndex;
+
+    console.log(month);
     switch (month) {
-      case 12:
+      case 11:
+      case 0:
       case 1:
-      case 2:
         seasonIndex = 0;
         break;
+      case 2:
       case 3:
       case 4:
-      case 5:
         seasonIndex = 1;
         break;
+      case 5:
       case 6:
       case 7:
-      case 8:
         seasonIndex = 2;
         break;
+      case 8:
       case 9:
       case 10:
-      case 11:
         seasonIndex = 3;
         break;
     }
