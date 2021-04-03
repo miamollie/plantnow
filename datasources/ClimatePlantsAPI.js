@@ -8,13 +8,11 @@ class ClimatePlantsAPI {
   }
 
   getPlantData(plants) {
-    return plants.map((p) => {
-      if (!!this.plantData[p]) {
-        return this.plantData[p];
-      } else {
-        console.error(`Can't find data for ${p}`);
-      }
-    });
+    return plants
+      .filter((p) => {
+        return !!this.plantData[p];
+      })
+      .map((p) => this.plantData[p]);
   }
 
   async getClimatePlants({ climateName, month }) {
