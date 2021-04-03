@@ -4,7 +4,7 @@
 
 Uses GEOip lookup and the Climate zone API along with data from ABC gardens to determine what is best for you to plant in your garden right now :)
 
-Live now at: https://plantnow.netlify.app/
+Live now at: https://www.whatshouldiplant.today/
 
 ### GEOip lookup
 
