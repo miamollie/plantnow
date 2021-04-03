@@ -21,7 +21,7 @@ const typeDefs = gql`
   type Climate {
     name: String
     season: String!
-    plants: [Plant!]
+    plants: [Plant!]!
   }
 `;
 
