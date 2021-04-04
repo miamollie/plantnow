@@ -21,7 +21,6 @@ class ClimateZoneAPI extends RESTDataSource {
     const month = date.getMonth();
     let seasonIndex;
 
-    console.log(month);
     switch (month) {
       case 11:
       case 0:

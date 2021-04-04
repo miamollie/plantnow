@@ -1,6 +1,7 @@
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { Search } from "./Search";
 
 export default function Layout({ children }) {
   const classes = useStyles();
@@ -19,6 +20,7 @@ export default function Layout({ children }) {
         <Typography variant="h1" component="h1" className={classes.title}>
           What should I plant <em>Now</em>?
         </Typography>
+        <Search />
         {children}
       </Container>
     </div>
