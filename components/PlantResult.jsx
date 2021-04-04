@@ -20,6 +20,7 @@ export default function PlantDetail({ plant }) {
   return (
     <>
       <Grow in={true}>
+        <li className={classes.cardListItem}>
           <figure className={classes.card}>
             <div className={classes.cardContent}>
               <Typography
@@ -34,6 +35,7 @@ export default function PlantDetail({ plant }) {
               </Typography>
             </div>
           </figure>
+        </li>
       </Grow>
       <PlantModal open={open} plant={plant} handleClose={handleClose} />
     </>
@@ -41,21 +43,19 @@ export default function PlantDetail({ plant }) {
 }
 
 const useStyles = makeStyles((theme) => ({
+  cardListItem: {
+    cursor: "pointer",
+  },
   card: {
-    margin: `${theme.spacing(1)}px`,
+    transition: `box-shadow ease ${theme.transitions.duration.standard}s`,
+    position: "relative",
+    margin: 0,
     overflow: "hidden",
     backgroundColor: "white",
-    cursor: "pointer",
-    position: "relative",
-    width: `${theme.spacing(20)}px`,
-    height: `${theme.spacing(12)}px`,
-    transition: `box-shadow ease ${theme.transitions.duration.standard}s`,
-    "&:hover, &:focus": {
-      boxShadow: theme.shadows[3],
-    },
+    width: "100%",
+    height: "100%",
   },
   cardButton: {
-    cursor: "pointer",
     border: "none",
     borderRadius: 0,
     background: "transparent",
@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover, &:focus": {
       outline: "none",
     },
+    // Forces button to fill container
     "&::after": {
       content: "close-quote",
       color: "transparent",
