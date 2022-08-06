@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import Loader from "../components/Loader";
 
 const SWR_KEY = "/api/graphql";
-const GEOIP_API = "https://freegeoip.app/json/"; //todo move to env
+const GEOIP_API = "https://freegeoip.io/json/"; //todo move to env
 
 const fetchGeoIP = async () => {
   const res = await fetch(GEOIP_API);
@@ -37,6 +37,7 @@ const fetchPlantData = async ({ lat, long }) => {
 };
 
 const fetcher = async () => {
+  //GEOIP fetcher must happen client side
   const [lat, long] = await fetchGeoIP();
   const res = await fetchPlantData({ lat, long });
   return res.data;
@@ -45,6 +46,7 @@ const fetcher = async () => {
 const fetchOptions = {
   revalidateOnFocus: false,
 };
+
 import useIsMounted from "../components/hooks/useIsMounted";
 
 export default function Index() {
