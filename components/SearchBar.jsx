@@ -46,12 +46,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     cursor: "pointer",
     position: "relative",
-    width: `50%`,
+    width: "50%",
     minWidth: `${theme.spacing(5)}px`,
     height: `${theme.spacing(5)}px`,
     boxShadow: theme.shadows[3],
     borderRadius: "30px",
-    "&:hover, &:focus": {},
+    "&:hover, &:focus": {
+      border: "1px solid #333",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
 }));
 
