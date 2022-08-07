@@ -4,10 +4,16 @@ import Layout from "../components/Layout";
 import Loader from "../components/Loader";
 
 const SWR_KEY = "/api/graphql";
-const GEOIP_API = "https://freegeoip.app/json/"; //todo move to env
 
 const fetchGeoIP = async () => {
-  const res = await fetch(GEOIP_API);
+  const query = new URLSearchParams({
+    apiKey: process.env.NEXT_PUBLIC_GEOIP_API_KEY,
+  }).toString();
+  const URL = process.env.NEXT_PUBLIC_GEOIP_API + "?" + query;
+  const res = await fetch(URL).catch((e) => {
+    throw new Error(e);
+  });
+
   const data = await res.json().catch((e) => {
     throw new Error(e); //todo add error boundary
   });
@@ -37,6 +43,7 @@ const fetchPlantData = async ({ lat, long }) => {
 };
 
 const fetcher = async () => {
+  //GEOIP fetcher must happen client side
   const [lat, long] = await fetchGeoIP();
   const res = await fetchPlantData({ lat, long });
   return res.data;
@@ -45,6 +52,7 @@ const fetcher = async () => {
 const fetchOptions = {
   revalidateOnFocus: false,
 };
+
 import useIsMounted from "../components/hooks/useIsMounted";
 
 export default function Index() {
