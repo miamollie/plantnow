@@ -27,3 +27,6 @@ package-lock.json
 # deploy files
 /out_publish/
 /out_functions/
+
+# secrets
+*.env.*

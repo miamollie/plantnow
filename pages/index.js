@@ -4,10 +4,16 @@ import Layout from "../components/Layout";
 import Loader from "../components/Loader";
 
 const SWR_KEY = "/api/graphql";
-const GEOIP_API = "https://freegeoip.io/json/"; //todo move to env
 
 const fetchGeoIP = async () => {
-  const res = await fetch(GEOIP_API);
+  const query = new URLSearchParams({
+    apiKey: process.env.NEXT_PUBLIC_GEOIP_API_KEY,
+  }).toString();
+  const URL = process.env.NEXT_PUBLIC_GEOIP_API + "?" + query;
+  const res = await fetch(URL).catch((e) => {
+    throw new Error(e);
+  });
+
   const data = await res.json().catch((e) => {
     throw new Error(e); //todo add error boundary
   });
